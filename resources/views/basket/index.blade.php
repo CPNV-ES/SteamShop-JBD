@@ -11,7 +11,8 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     
                    <p> Nom du jeu : {{$game->name}} | Prix : {{$game->price}}</p>
-                       <form action="basket/{{$game->id}}" method="get">
+                       <form action="basket/{{$game->id}}" method="POST">
+                            @method('PATCH')
                             @csrf
                             <button>Acheter</button>
                         </form>

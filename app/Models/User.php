@@ -21,6 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'price',
     ];
 
     /**
@@ -41,4 +42,11 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    function removeMoneyAmount($amount)
+    {
+        if ($this->price -= $amount >= 0) {
+            $this->price -= $amount;
+        }
+    }
 }
