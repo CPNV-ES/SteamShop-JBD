@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                    @foreach ($games as $game)
                        <p> Nom du jeu : {{$game->name}} | Prix : {{$game->price}}</p>
-                       <form action="{{ route('basket.index', $game) }}" method="POST">
+                       <form action="basket/{{$game->id}}" method="get">
                             @csrf
                             <button>Acheter</button>
                         </form>
