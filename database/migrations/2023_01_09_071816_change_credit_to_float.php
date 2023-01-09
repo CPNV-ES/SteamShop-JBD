@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        /*  Schema::create('baskets', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+        Schema::table('users', function (Blueprint $table) {
+            $table->decimal("credit", 20, 2);
         });
-        */
+        Schema::table('games', function (Blueprint $table) {
+            $table->decimal("price", 20, 2);
+        });
     }
 
     /**
@@ -27,6 +28,8 @@ return new class extends Migration
      */
     public function down()
     {
-        //§Schema::dropIfExists('baskets');
+        Schema::table('users', function (Blueprint $table) {
+            //
+        });
     }
 };
