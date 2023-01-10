@@ -29,8 +29,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/basket/{game}', [BasketController::class, 'show'])->name('basket.show');
-    Route::patch('/basket/{game}', [BasketController::class, 'validateBasket'])->name('basket.validateBasket');
+    Route::singleton('basket', BasketController::class);
+    Route::patch('/basket/buy', [BasketController::class, 'buyGame'])->name('basket.buyGame');
     Route::resource('games', GameController::class);
 });
 

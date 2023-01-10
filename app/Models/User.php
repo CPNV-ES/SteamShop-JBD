@@ -21,7 +21,7 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'price',
+        'credit',
     ];
 
     /**
@@ -43,10 +43,11 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    function removeMoneyAmount($amount)
+    public function removeMoneyAmount($amount)
     {
-        if ($this->price -= $amount >= 0) {
-            $this->price -= $amount;
+        if ($this->credit -= $amount >= 0) {
+            $this->credit -= $amount;
+            self::save();
         }
     }
 }

@@ -17,10 +17,27 @@ class BasketController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show()
     {
-        $game = Game::where('id', $id)->first();
+
+        $basket = Basket::getInstance();
+        $game = $basket->game;
+
         return view('basket.index', ['game' => $game]);
+    }
+
+
+    public function update(Request $request)
+    {
+        $basket = Basket::getInstance();
+
+        $game = new game($request->all());
+
+        $basket->game = $game;
+
+
+
+        return redirect('/basket');
     }
 
 
@@ -30,9 +47,12 @@ class BasketController extends Controller
      * @param  \App\Http\Requests\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function validateBasket(Request $request, Game $game)
+    public function buyGame(Request $request, Game $game)
     {
-        $game = Game::where('id', $id)->first();
+
+        $game = new game($request->all());
+        $basket = Basket::getInstance();
+        $basket->buyGame($game->price);
         return view('basket.index', ['game' => $game]);
     }
 }
