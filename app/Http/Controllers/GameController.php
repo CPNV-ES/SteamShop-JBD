@@ -17,7 +17,11 @@ class GameController extends Controller
         $games = Game::all();
         return view('games.index', ['games' => $games]);
     }
-
+    public function listFamous()
+    {
+        $games = Game::where('is_famous', 1)->take(5)->get();
+        return view('welcome', ['games' => $games]);
+    }
     /**
      * Show the form for creating a new resource.
      *
