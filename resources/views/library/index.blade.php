@@ -20,7 +20,7 @@
                             <input type="text" readonly value="{{$game->name}}" name="name">
                             <label> prix : </label>
                             <input type="text" readonly value="{{$game->price}}" name="price">
-                            <button>Acheter</button>
+                           
                         </form>
                    @endforeach
                 </div>
