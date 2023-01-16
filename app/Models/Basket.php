@@ -24,9 +24,10 @@ class Basket extends Model
         return session('basket');
     }
 
-    public function buyGame($amount)
+    public function buyGame(Game $game)
     {
         $user = Auth::user();
-        $user->removeMoneyAmount($amount);
+        $user->removeMoneyAmount($game);
+        return 0;
     }
 }
