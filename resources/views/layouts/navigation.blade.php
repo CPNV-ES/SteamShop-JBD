@@ -40,6 +40,9 @@
                         <x-dropdown-link :href="route('library.index')">
                             {{ __('Library') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('games.create')">
+                            {{ __('Add Game') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

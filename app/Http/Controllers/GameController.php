@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class GameController extends Controller
 {
@@ -29,7 +31,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view('games.create');
     }
 
     /**
@@ -40,7 +42,14 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+        $user = Auth::user();
+        $game = new Game($request->all());
+        $game->save();
+        $user->games()->attach([$game->id => ['is_creator' => true]]);
+
+        return redirect("/");
     }
 
     /**
