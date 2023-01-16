@@ -14,10 +14,11 @@
                        <form action="{{ route('basket.update') }}" method="post">
                             @csrf
                             @method('PATCH')
+                            <input hidden value="{{$game->id}}" name ="id">
                             <label> Nom du jeu : </label>
-                            <input type="text" readonly value=" {{$game->name}}" name="name">
+                            <input type="text" readonly value="{{$game->name}}" name="name">
                             <label> prix : </label>
-                            <input type="text" readonly value=" {{$game->price}}" name="price">
+                            <input type="text" readonly value="{{$game->price}}" name="price">
                             <button>Acheter</button>
                         </form>
                    @endforeach
