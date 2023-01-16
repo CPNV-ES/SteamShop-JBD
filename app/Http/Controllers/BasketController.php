@@ -53,6 +53,6 @@ class BasketController extends Controller
         $game = new game($request->all());
         $basket = Basket::getInstance();
         $basket->buyGame($game);
-        return view('basket.index', ['game' => $game]);
+        return redirect(route('library.index'));
     }
 }
