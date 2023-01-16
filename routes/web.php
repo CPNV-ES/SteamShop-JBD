@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BasketController;
 use App\Http\Controllers\GameController;
+use App\Http\Controllers\LibraryController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::middleware('auth')->group(function () {
     Route::singleton('basket', BasketController::class);
     Route::patch('/basket/buy', [BasketController::class, 'buyGame'])->name('basket.buyGame');
     Route::resource('games', GameController::class);
+    Route::resource('library', LibraryController::class);
     Route::get('/', [GameController::class, 'listFamous']);
 });
 
