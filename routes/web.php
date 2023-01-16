@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/', [GameController::class, 'listFamous']);
+
 Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
@@ -30,6 +30,7 @@ Route::middleware('auth')->group(function () {
     Route::singleton('basket', BasketController::class);
     Route::patch('/basket/buy', [BasketController::class, 'buyGame'])->name('basket.buyGame');
     Route::resource('games', GameController::class);
+    Route::get('/', [GameController::class, 'listFamous']);
 });
 
 
