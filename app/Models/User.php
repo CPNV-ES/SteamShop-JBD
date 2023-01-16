@@ -44,11 +44,18 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    public function removeMoneyAmount($amount)
+    public function removeMoneyAmount(Game $game)
     {
-        if ($this->credit -= $amount >= 0) {
-            $this->credit -= $amount;
+        if ($this->credit -= $game->price >= 0) {
+            $this->credit -= $game->price;
+
+            $this->games()->attach($game->id);
             self::save();
         }
+        return 0;
+    }
+    public function games()
+    {
+        return $this->belongsToMany(Game::class);
     }
 }
