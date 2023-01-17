@@ -6,7 +6,7 @@ use App\Models\Basket;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use App\Models\Game;
-
+use Illuminate\Support\Facades\Auth;
 
 class BasketController extends Controller
 {
@@ -49,10 +49,11 @@ class BasketController extends Controller
      */
     public function buyGame(Request $request, Game $game)
     {
-
+        $user = Auth::user();
         $game = new game($request->all());
         $basket = Basket::getInstance();
         $basket->buyGame($game);
+        $user->wishes()->detach($game->id);
         return redirect(route('library.index'));
     }
 }
