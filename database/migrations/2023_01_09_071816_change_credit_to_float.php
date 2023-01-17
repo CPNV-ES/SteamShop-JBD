@@ -14,10 +14,10 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->decimal("credit", 20, 2);
+            $table->decimal("credit", 20, 2)->change();
         });
         Schema::table('games', function (Blueprint $table) {
-            $table->decimal("price", 20, 2);
+            $table->decimal("price", 20, 2)->change();
         });
     }
 
