@@ -14,7 +14,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::all();
+        $games = Game::all()->where('publish_date', '<=', today());
+
         return view('games.index', ['games' => $games]);
     }
     public function listFamous()
