@@ -17,7 +17,7 @@
                         <label> prix : </label>
                         <input type="number"  value="" name="price">
                         <label> Date de sortie : </label>
-                        <input type="datetime-local"  value="" name="comeOutDate">
+                        <input type="datetime-local"  value="{{today()}}" name="publish_date">
                         <button>Acheter</button>
                     </form>
                 
