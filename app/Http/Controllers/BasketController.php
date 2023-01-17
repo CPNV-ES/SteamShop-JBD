@@ -52,7 +52,7 @@ class BasketController extends Controller
         $user = Auth::user();
         $game = new game($request->all());
         $basket = Basket::getInstance();
-        $basket->buyGame($game);
+        $basket->buyGame($game, $user);
         $user->wishes()->detach($game->id);
         return redirect(route('library.index'));
     }

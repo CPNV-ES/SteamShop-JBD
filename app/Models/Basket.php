@@ -3,7 +3,6 @@
 namespace App\Models;
 
 use App\Models\Game;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -24,9 +23,9 @@ class Basket extends Model
         return session('basket');
     }
 
-    public function buyGame(Game $game)
+    public function buyGame(Game $game, User $user)
     {
-        $user = Auth::user();
+
         $user->removeMoneyAmount($game);
         return 0;
     }
