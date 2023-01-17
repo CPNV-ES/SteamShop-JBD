@@ -49,7 +49,6 @@ class GameController extends Controller
         $game = new Game($request->all());
         $game->save();
         $user->games()->attach([$game->id => ['is_creator' => true]]);
-
         return redirect("/");
     }
 

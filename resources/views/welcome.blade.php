@@ -11,8 +11,10 @@
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                     {{ __("Hit de la saison !") }}
                     @foreach ($games as $game)
-                      
-                       <form action="{{ route('basket.update') }}" method="post" class="bg-red-200 flex space-x-4 justify-items-stretch">
+                     <p class="bg-red-400 justify-self-end"> 5000% de réduction !!!!!!<p>
+                <div class="bg-red-200">
+                    
+                       <form action="{{ route('basket.update') }}" method="post" class="bg-red-200 inline w-6/12 inline">
                             @csrf
                             @method('PATCH')
                             <input hidden value="{{$game->id}}" name ="id">
@@ -22,8 +24,17 @@
                             <input type="text" readonly value="{{$game->price}}" name="price">
                             <button>Acheter</button>
 
-                            <p class="bg-red-400 justify-self-end"> 5000% de réduction !!!!!!<p>
+                           
                         </form>
+                         <form action="{{ route('wishes.store') }}" method="post" class="inline">
+                            @csrf
+                            <input hidden value="{{$game->id}}" name ="id">
+                            <input type="text" hidden readonly value="{{$game->name}}" name="name">
+                            <input type="text" hidden readonly value="{{$game->price}}" name="price">
+                            <button>Wish</button>
+                        </form>
+                        
+            </div>
                    @endforeach
                 </div>
             </div>

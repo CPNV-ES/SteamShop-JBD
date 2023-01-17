@@ -42,7 +42,7 @@ class WishController extends Controller
         $user = Auth::user();
         $game = new Game($request->all());
         $user->wishes()->syncWithoutDetaching($game->id);
-        return redirect('games');
+        return redirect('wishes');
     }
 
     /**
