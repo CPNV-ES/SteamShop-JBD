@@ -10,8 +10,8 @@
             <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900 dark:text-gray-100">
                    @foreach ($games as $game)
-                </div>
-                       <form action="{{ route('basket.update') }}" method="post" class="w-6/12 inline">
+                      
+                       <form action="{{ route('basket.update') }}" method="post">
                             @csrf
                             @method('PATCH')
                             <input hidden value="{{$game->id}}" name ="id">
@@ -19,17 +19,8 @@
                             <input type="text" readonly value="{{$game->name}}" name="name">
                             <label> prix : </label>
                             <input type="text" readonly value="{{$game->price}}" name="price">
-                            <button >Acheter</button>
-                            
+                            <button>Acheter</button>
                         </form>
-                         <form action="{{ route('wishes.store') }}" method="post" class="inline">
-                            @csrf
-                            <input hidden value="{{$game->id}}" name ="id">
-                            <input type="text" hidden readonly value="{{$game->name}}" name="name">
-                            <input type="text" hidden readonly value="{{$game->price}}" name="price">
-                            <button>Wish</button>
-                        </form>
-            <div>
                    @endforeach
                 </div>
             </div>

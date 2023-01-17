@@ -57,4 +57,8 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Game::class);
     }
+    public function wishes()
+    {
+        return $this->belongsToMany(Game::class, 'wish_user');
+    }
 }

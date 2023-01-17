@@ -43,6 +43,9 @@
                         <x-dropdown-link :href="route('games.create')">
                             {{ __('Add Game') }}
                         </x-dropdown-link>
+                        <x-dropdown-link :href="route('wishes.index')">
+                            {{ __('View wishlist') }}
+                        </x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

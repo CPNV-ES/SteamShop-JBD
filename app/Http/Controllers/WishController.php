@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Game;
 use App\Models\User;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class GameController extends Controller
+class WishController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,15 +16,11 @@ class GameController extends Controller
      */
     public function index()
     {
-        $games = Game::all()->where('publish_date', '<=', today());
+        $user = Auth::user();
+        $games = $user->wishes;
+        return view('wishes.index', ['games' => $games]);
+    }
 
-        return view('games.index', ['games' => $games]);
-    }
-    public function listFamous()
-    {
-        $games = Game::where('publish_date', '<=', today())->take(5)->get();
-        return view('welcome', ['games' => $games]);
-    }
     /**
      * Show the form for creating a new resource.
      *
@@ -32,7 +28,7 @@ class GameController extends Controller
      */
     public function create()
     {
-        return view('games.create');
+        //
     }
 
     /**
@@ -43,23 +39,19 @@ class GameController extends Controller
      */
     public function store(Request $request)
     {
-
-
         $user = Auth::user();
         $game = new Game($request->all());
-        $game->save();
-        $user->games()->attach([$game->id => ['is_creator' => true]]);
-
-        return redirect("/");
+        $user->wishes()->syncWithoutDetaching($game->id);
+        return redirect('games');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Game  $game
+     * @param  \App\Models\Wish  $wish
      * @return \Illuminate\Http\Response
      */
-    public function show(Game $game)
+    public function show(User $user)
     {
         //
     }
@@ -67,10 +59,10 @@ class GameController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Game  $game
+     * @param  \App\Models\Wish  $wish
      * @return \Illuminate\Http\Response
      */
-    public function edit(Game $game)
+    public function edit(User $user)
     {
         //
     }
@@ -79,10 +71,10 @@ class GameController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Game  $game
+     * @param  \App\Models\Wish  $wish
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Game $game)
+    public function update(Request $request, User $user)
     {
         //
     }
@@ -90,10 +82,10 @@ class GameController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Game  $game
+     * @param  \App\Models\Wish  $wish
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Game $game)
+    public function destroy(User $user)
     {
         //
     }
